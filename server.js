@@ -11,7 +11,7 @@ const database = require('./config/db');
 database();
 
 // route
-app.use(express.json());
+app.use(express.json()); // for parsing application/json
 app.use('/api/users', users);
 app.get('/' , (req , res) => {
     res.send('Hello World');

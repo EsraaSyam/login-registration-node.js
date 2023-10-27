@@ -1,7 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const users = require('./routes/user');
-
 dotenv.config({path : '.env'});
 
 // express app
@@ -12,14 +11,17 @@ const database = require('./config/db');
 database();
 
 // route
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+app.use(express.json());
+app.use('/api/users', users);
+app.get('/' , (req , res) => {
+    res.send('Hello World');
 });
-
 
 
 // listen
 
-app.listen(3000, () => {
-    console.log('Example app listening on port 3000!');
+PORT = process.env.PORT || 3000;
+
+app.listen(PORT , () => {
+    console.log(`Server is running on port ${PORT}`);
 });

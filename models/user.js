@@ -15,6 +15,19 @@ const userSchema = new mongoose.Schema({
         length : 14
 
     },
+
+    phone_number : {
+        type : String,
+        required : true,
+        length : 11
+    },
+
+    blood_type : {
+        type : String,
+        required : true,
+        length : 2
+    },
+
     isAdmin: Boolean
 });
 
@@ -29,10 +42,13 @@ const User = mongoose.model('User', userSchema);
 const validateUser = (user) => {
     const schema = joi.object({
         name : joi.string().min(3).max(50).required(),
-        id : joi.string().length(14).required()
+        id : joi.string().length(14).required(),
+        phone_number : joi.string().length(11).required(),
+        blood_type : joi.string().length(2).required()
     });
     return schema.validate(user);
 }
+
 
 const validateSignin = (user) => {
     const schema = joi.object({

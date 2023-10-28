@@ -12,10 +12,10 @@ router.post('/' , async (req , res) => {
     let user = await User.findOne({id : req.body.id});
     if(user) return res.status(400).send('User already registered');
 
-    user = new User(_.pick(req.body , ['name' , 'id']));
+    user = new User(_.pick(req.body , ['name' , 'id' , 'phone_number' , 'blood_type']));
 
     await user.save();
-    res.send(_.pick(user , ['name' , 'id']));
+    res.send('User registered successfully...');
 });
 
 module.exports = router;
